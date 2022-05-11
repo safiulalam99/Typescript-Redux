@@ -19,6 +19,7 @@ export default function Product() {
     <>
       <h1>Product page</h1>
       <h2>{`${product.name} - $${product.price}`}</h2>
+      <h2>het tehujshd</h2>
     </>
   )
 }
