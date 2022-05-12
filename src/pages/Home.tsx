@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getCountries, addToCart } from '../redux/actions'
 import { AppState } from '../types'
+// import Table from '@mui/material/Table';
 
 export default function Home() {
   const dispatch = useDispatch()
