@@ -6,12 +6,70 @@ export const COUNTRIES_REQUEST = 'COUNTRIES_REQUEST'
 export const COUNTRIES_SUCCESS = 'COUNTRIES_SUCCESS'
 export const COUNTRIES_FAILURE = 'COUNTRIES_FAILURE'
 
+export const ADD_TO_CART = 'ADD_TO_CART'
+
 // Enum
 export enum DialogType {}
 // SignIn = 'signIn',
 // SignUp = 'signUp',
+export type prodState = {
+  product: ProductState
+  ui: UiState
+}
 
-// A product
+////////////////////////////////////
+export type AppState = {
+  countriesList: pageState
+  cart: CountryAPI[]
+}
+
+export type countriesAction = SuccessAction | FailureAction | RequestAction
+
+export type SuccessAction = {
+  type: typeof COUNTRIES_SUCCESS
+  payload: CountryAPI[]
+}
+
+export type RequestAction = {
+  type: typeof COUNTRIES_REQUEST
+}
+
+export type FailureAction = {
+  type: typeof COUNTRIES_FAILURE
+  payload: {
+    ErrorMessage: string
+  }
+}
+
+// JSON array data params
+export type CountryAPI = {
+  id: string
+  name: {
+    common: string
+  }
+  flags: {
+    svg: string
+  }
+  languages: {
+    [key: string]: string
+  }
+  population: number
+  region: string
+  favourites: boolean
+}
+
+export type countryProp = {
+  countries: CountryAPI[]
+}
+
+export type pageState = {
+  countries: CountryAPI[] | null
+  isLoaded: boolean
+  isLoading: boolean
+  isError: string
+}
+
+////////////////////////////////////
 
 export type Product = {
   id: string
@@ -54,9 +112,4 @@ export type UiState = {
   dialogOpen: {
     [key in DialogType]?: boolean
   }
-}
-
-export type AppState = {
-  product: ProductState
-  ui: UiState
 }

@@ -7,7 +7,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import makeStore from './redux/store'
 
-const store = makeStore()
+const store = makeStore
 
 const WithProvider = () => (
   <Provider store={store}>

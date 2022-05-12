@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux'
+import { countriesReducer } from './countries'
+import { cart } from './cart'
 
-import product from './product'
-import ui from './ui'
-
-const createRootReducer = () =>
-  combineReducers({
-    product,
-    ui,
-  })
-
-export default createRootReducer
+export default combineReducers({
+  countriesList: countriesReducer,
+  cart,
+})

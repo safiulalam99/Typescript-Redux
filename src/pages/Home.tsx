@@ -1,38 +1,42 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
-import { Product, AppState } from '../types'
-import { addProduct, removeProduct } from '../redux/actions'
-
-const names = ['Apple', 'Orange', 'Avocado', 'Banana', 'Cucumber', 'Carrot']
+import { getCountries, addToCart } from '../redux/actions'
+import { AppState } from '../types'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const products = useSelector((state: AppState) => state.product.inCart)
 
-  const handleAddProduct = () => {
-    const product: Product = {
-      id: (+new Date()).toString(),
-      name: names[Math.floor(Math.random() * names.length)],
-      price: +(Math.random() * 10).toFixed(2),
-    }
-    dispatch(addProduct(product))
-  }
+  // data from reducers
+  const { countries, isLoaded, isLoading, isError } = useSelector(
+    (state: AppState) => state.countriesList
+  )
+  const cart = useSelector((state: AppState) => state.cart)
+
+  console.log(cart)
+
+  useEffect(() => {
+    dispatch(getCountries())
+    getCountries()
+  }, [dispatch])
 
   return (
     <>
-      <h1>Home page</h1>
-      {products.length <= 0 && <div>No products in cart</div>}
-      <ul>
-        {products.map(p => (
-          <li key={p.id}>
-            <Link to={`/products/${p.id}`}>{`${p.name} - $${p.price}`}</Link>
-            <button onClick={() => dispatch(removeProduct(p))}>Remove</button>
-          </li>
+      //
+      <div>
+        {isError && <p>{isError}</p>}
+        {isLoading && <p>Loading...</p>}
+        {isLoaded && <p>Loading...</p>}
+
+        {countries?.map((country) => (
+          <div key={country.name.common} style={{ display: 'flex' }}>
+            <h4>{country.name.common}</h4>
+            <button onClick={() => dispatch(addToCart(country))}>
+              ADD TO CART
+            </button>
+          </div>
         ))}
-      </ul>
-      <button onClick={handleAddProduct}>Add product</button>
+      </div>
     </>
   )
 }
