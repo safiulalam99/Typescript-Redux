@@ -1,11 +1,10 @@
 import React from 'react'
-
-import Routes from './Routes'
+import Index from './routes'
 
 export default function App() {
   return (
     <>
-      <Routes />
+      <Index />
     </>
   )
 }

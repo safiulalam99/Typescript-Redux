@@ -1,3 +1,4 @@
+// import { identifier } from '@babel/types'
 import { CountryAPI, ADD_TO_CART } from '../../types'
 
 const initialState: CountryAPI[] = []
@@ -18,15 +19,17 @@ export function cart(state = initialState, action: any) {
     if (isDuplicate) {
       return state
     }
-
+    // console.log(state)
     return [...state, action.payload]
   }
   case 'REMOVE_FROM_CART': {
-    // const newItem = action.payload
-    // const filteredState = state.filter(
-    //   (country) => country.name.common !== newItem.name.common
-    // )
-    // console.log(filteredState)
+    const newItem = action.payload
+    console.log(newItem)
+    console.log(state)
+    const filteredState = state.filter(
+      (country: any) => country.name.common !== newItem.name.common
+    )
+    console.log(filteredState)
 
     return state
   }

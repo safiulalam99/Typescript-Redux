@@ -39,7 +39,7 @@ export function getCountries() {
     dispatch(fetchRequest())
     try {
       const res = await axios.get('https://restcountries.com/v3.1/all')
-      console.log(res.data)
+      // console.log(res.data)
       const countriesData = res.data.map((obj: any) => ({
         ...obj,
         isInFavourites: false,

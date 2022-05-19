@@ -7,6 +7,7 @@ export const COUNTRIES_SUCCESS = 'COUNTRIES_SUCCESS'
 export const COUNTRIES_FAILURE = 'COUNTRIES_FAILURE'
 
 export const ADD_TO_CART = 'ADD_TO_CART'
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
 // Enum
 export enum DialogType {}
@@ -46,6 +47,7 @@ export type CountryAPI = {
   id: string
   name: {
     common: string
+    official: string
   }
   flags: {
     svg: string
@@ -53,13 +55,18 @@ export type CountryAPI = {
   languages: {
     [key: string]: string
   }
+  capital: string
+  unMember: boolean
   population: number
   region: string
+  borders: {
+    [key: string]: string
+  }
   favourites: boolean
 }
 
 export type countryProp = {
-  countries: CountryAPI[]
+  country: CountryAPI
 }
 
 export type pageState = {
@@ -110,6 +117,6 @@ export type ProductState = {
 // Using dynamic keys from an enum
 export type UiState = {
   dialogOpen: {
-    [key in DialogType]?: boolean
+    // [key inDialogType]?: boolean
   }
 }
