@@ -6,6 +6,10 @@ export const COUNTRIES_REQUEST = 'COUNTRIES_REQUEST'
 export const COUNTRIES_SUCCESS = 'COUNTRIES_SUCCESS'
 export const COUNTRIES_FAILURE = 'COUNTRIES_FAILURE'
 
+export const COUNTRY_NAME_SUCCESS = 'COUNTRY_NAME_SUCCESS'
+export const COUNTRY_NAME_FAILURE = 'COUNTRY_NAME_FAILURE'
+export const COUNTRY_NAME_REQUEST = 'COUNTRY_NAME_REQUEST'
+
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
@@ -24,11 +28,17 @@ export type AppState = {
   cart: CountryAPI[]
 }
 
-export type countriesAction = SuccessAction | FailureAction | RequestAction
+export type countriesAction =
+  | SuccessAction
+  | FailureAction
+  | RequestAction
+  | CountryNameSuccessAction
+  | CountryNameFailureAction
+  | CountryNameRequestAction
 
 export type SuccessAction = {
   type: typeof COUNTRIES_SUCCESS
-  payload: CountryAPI[]
+  payload: countryProp
 }
 
 export type RequestAction = {
@@ -37,6 +47,22 @@ export type RequestAction = {
 
 export type FailureAction = {
   type: typeof COUNTRIES_FAILURE
+  payload: {
+    ErrorMessage: string
+  }
+}
+
+export type CountryNameSuccessAction = {
+  type: typeof COUNTRY_NAME_SUCCESS
+  payload: countryProp
+}
+
+export type CountryNameRequestAction = {
+  type: typeof COUNTRY_NAME_REQUEST
+}
+
+export type CountryNameFailureAction = {
+  type: typeof COUNTRY_NAME_FAILURE
   payload: {
     ErrorMessage: string
   }
@@ -71,6 +97,7 @@ export type countryProp = {
 
 export type pageState = {
   countries: CountryAPI[] | null
+  country: CountryAPI[]
   isLoaded: boolean
   isLoading: boolean
   isError: string

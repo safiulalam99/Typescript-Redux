@@ -1,46 +1,59 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { Link } from 'react-router-dom'
-import Table from '../components/TableRow'
+import Loader from '../components/Loader'
+import TableRowItem from '../components/TableRow'
 
-import { getCountries, addToCart, removeFromCart } from '../redux/actions'
+import {
+  getCountries,
+  addToCart,
+  // removeFromCart,
+} from '../redux/actions'
 import { AppState } from '../types'
-// import Table from '@mui/material/Table';
+import Table from '@mui/material/Table'
+import TableContainer from '@mui/material/TableContainer'
+import TableHeader from '../components/TableHeader'
+import { TableBody } from '@mui/material'
 
 export default function Home() {
   const dispatch = useDispatch()
 
   // data from reducers
-  const { countries, isError } = useSelector(
+  const { countries, isLoading, isError } = useSelector(
     (state: AppState) => state.countriesList
   )
   const cart = useSelector((state: any) => state.cart)
-
-  // console.log(cart)
-
+  // const addCartDispatch = dispatch(addToCart(cart));
   useEffect(() => {
     dispatch(getCountries())
     getCountries()
   }, [dispatch])
 
+  function buttonIssue() {
+    dispatch(addToCart(cart))
+  }
+
   return (
     <>
       <div>
         {isError && <p>{isError}</p>}
-
-        {countries &&
-          countries.map((country) => (
-            <div>
-              <Table country={country} />
-
-              <button onClick={() => dispatch(addToCart(country))}>
-                ADD TO CART
-              </button>
-              <button onClick={() => dispatch(removeFromCart(cart))}>
-                Remove
-              </button>
-            </div>
-          ))}
+        {isLoading && <Loader isLoading={isLoading} />}
+        <TableContainer
+          sx={{
+            marginTop: '50px',
+            marginBottom: '40px',
+          }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHeader />
+            <TableBody>
+              {countries &&
+                countries.map((country) => (
+                  //I tried sending it as a prob to the "Add to cart button in TableRow component, but it didnt work. any suggestions?"
+                  <TableRowItem country={country} addButton={buttonIssue} />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </>
   )

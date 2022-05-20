@@ -2,8 +2,6 @@
 import { /*useDispatch, */ useSelector } from 'react-redux'
 // import { AppState } from '../types'
 
-import Table from '../components/TableRow'
-
 // import { getCountries, addToCart } from '../redux/actions'
 
 import React from 'react'
@@ -23,8 +21,9 @@ export const CartPage = () => {
     <div>
       {cart &&
         cart.map((cartItem: any) => {
-          //  return <h2>{cartItem.fifa}</h2>
-          return <Table country={cartItem} />
+          console.log(cartItem)
+          return <h2>{cartItem.fifa}</h2>
+          // return <CartTable country={cartItem} />
         })}
     </div>
   )

@@ -5,7 +5,7 @@ import TableRow from '@mui/material/TableRow'
 import Avatar from '@mui/material/Avatar'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 
-// import TableHead from '@mui/material/TableHead'
+// import { countryProp } from '../../types'
 import { /* Table, TableContainer,*/ Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 // import {
