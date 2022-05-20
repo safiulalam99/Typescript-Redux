@@ -5,7 +5,7 @@ import TableRow from '@mui/material/TableRow'
 import Avatar from '@mui/material/Avatar'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 
-// import { countryProp } from '../../types'
+import { countryProp } from '../../types'
 import { /* Table, TableContainer,*/ Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 // import {
@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 //   // getCountryByName,
 // } from '../../redux/actions'
 
-const TableRowitem = ({ country }: any, { addButton }: any) => {
+const TableRowitem = ({ country }: countryProp, { addButton }: any) => {
   return (
     <TableRow key={`country-${country.id}`}>
       <TableCell>

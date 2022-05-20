@@ -1,3 +1,5 @@
+// all commented code are for future use
+
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
@@ -5,7 +7,7 @@ import TableRowItem from '../components/TableRow'
 
 import {
   getCountries,
-  addToCart,
+  // addToCart,
   // removeFromCart,
 } from '../redux/actions'
 import { AppState } from '../types'
@@ -21,16 +23,16 @@ export default function Home() {
   const { countries, isLoading, isError } = useSelector(
     (state: AppState) => state.countriesList
   )
-  const cart = useSelector((state: any) => state.cart)
+  // const cart = useSelector((state: any) => state.cart)
   // const addCartDispatch = dispatch(addToCart(cart));
   useEffect(() => {
     dispatch(getCountries())
     getCountries()
   }, [dispatch])
-
-  function buttonIssue() {
-    dispatch(addToCart(cart))
-  }
+  // this was my attempt to run the dispatc in the fucntion and invoke it each time the add to cart was pressed, evidently it was not working
+  // function buttonIssue() {
+  //   dispatch(addToCart(cart))
+  // }
 
   return (
     <>
@@ -49,7 +51,7 @@ export default function Home() {
               {countries &&
                 countries.map((country) => (
                   //I tried sending it as a prob to the "Add to cart button in TableRow component, but it didnt work. any suggestions?"
-                  <TableRowItem country={country} addButton={buttonIssue} />
+                  <TableRowItem country={country} /*addButton={buttonIssue}*/ />
                 ))}
             </TableBody>
           </Table>
