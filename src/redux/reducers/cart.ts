@@ -12,7 +12,7 @@ export function cart(state = initialState, action: any) {
     if (isEmpty) {
       return [...state, newItem]
     }
-
+    console.log(newItem)
     const isDuplicate = state.some(
       (country) => country.name.common === newItem.name.common
     )
